@@ -9,6 +9,11 @@ class TokenList extends StatefulWidget {
 }
 
 class _TokenListState extends State<TokenList> {
+  List<List<String>> tokens = [
+    ["Tezos", "XTZ", "assets/images/tezos_logo.png", "64", "\$255.21"],
+    ["Dogami", "Doga", "assets/images/dogami_logo.png", "764", "\$55.21"],
+    ["GIF", "Gif", "assets/images/gif_logo.png", "0.0164", "\$1.21"],
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,9 +55,15 @@ class _TokenListState extends State<TokenList> {
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: 4,
+              itemCount: 3,
               itemBuilder: ((context, index) {
-                return tokenCard();
+                return tokenCard(
+                  tokens[index][0],
+                  tokens[index][1],
+                  tokens[index][2],
+                  tokens[index][3],
+                  tokens[index][4],
+                );
               }),
             ),
           )
@@ -61,7 +72,13 @@ class _TokenListState extends State<TokenList> {
     );
   }
 
-  Widget tokenCard() {
+  Widget tokenCard(
+    String heading,
+    String subheading,
+    String path,
+    String total,
+    String amount,
+  ) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: defaultPadding),
       decoration: const BoxDecoration(
@@ -74,20 +91,20 @@ class _TokenListState extends State<TokenList> {
         children: [
           Row(
             children: [
-              const Icon(
-                Icons.swap_horizontal_circle,
-                color: Colors.white,
+              Image(image: AssetImage(path)),
+              const SizedBox(
+                width: 5,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
-                    "Tezos",
-                    style: TextStyle(color: Colors.white),
+                    heading,
+                    style: const TextStyle(color: Colors.white),
                   ),
                   Text(
-                    "Xtz",
-                    style: TextStyle(color: Colors.grey),
+                    subheading,
+                    style: const TextStyle(color: Colors.grey),
                   ),
                 ],
               ),
@@ -95,16 +112,16 @@ class _TokenListState extends State<TokenList> {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
-            children: const [
+            children: [
               Text(
-                "64",
-                style: TextStyle(
+                total,
+                style: const TextStyle(
                   color: Colors.yellow,
                 ),
               ),
               Text(
-                "\$255.21",
-                style: TextStyle(
+                amount,
+                style: const TextStyle(
                   color: Colors.white,
                 ),
               ),

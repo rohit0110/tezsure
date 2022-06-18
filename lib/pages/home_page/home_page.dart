@@ -3,6 +3,7 @@ import 'package:tezsure/pages/home_page/components/bottom_nav_bar.dart';
 import 'package:tezsure/pages/home_page/components/destructive_card.dart';
 import 'package:tezsure/pages/home_page/components/portfolio_card.dart';
 import 'package:tezsure/pages/home_page/components/tokens.dart';
+import 'package:tezsure/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,13 +22,13 @@ class _HomePageState extends State<HomePage> {
             Column(
               children: [
                 Expanded(
-                  flex: 17,
+                  flex: 3,
                   child: Container(
                     color: const Color.fromRGBO(37, 37, 37, 1),
                   ),
                 ),
                 Expanded(
-                  flex: 33,
+                  flex: 5,
                   child: Container(
                     color: Colors.black,
                   ),
@@ -35,10 +36,41 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             Column(
-              children: const [
-                PortfolioCard(),
-                DestructiveCard(),
-                Expanded(child: TokenList()),
+              children: [
+                const PortfolioCard(),
+                Stack(
+                  children: const [
+                    Positioned(
+                      child: DestructiveCard(
+                        index: 0,
+                        bgPath: "assets/images/discover_dapps.jpg",
+                        heading: "DISCOVER DAPPS",
+                        subheading: "join the metaverse",
+                      ),
+                    ),
+                    Positioned(
+                      left: 10,
+                      bottom: 10,
+                      child: DestructiveCard(
+                        index: 1,
+                        bgPath: "assets/images/bake_tez.jpg",
+                        heading: "BAKE TEZ",
+                        subheading: "and earn rewards",
+                      ),
+                    ),
+                    Positioned(
+                      left: 20,
+                      bottom: 20,
+                      child: DestructiveCard(
+                        index: 2,
+                        bgPath: "assets/images/buy_tez.jpg",
+                        heading: "BUY TEZ",
+                        subheading: "Buy tez with cash now",
+                      ),
+                    ),
+                  ],
+                ),
+                const Expanded(child: TokenList()),
               ],
             ),
           ],
