@@ -47,9 +47,13 @@ class _PortfolioCardState extends State<PortfolioCard> {
                 onPressed: () {},
                 child: Row(
                   children: const [
-                    Icon(
-                      Icons.person,
-                      color: Colors.black,
+                    SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: Image(
+                        image: AssetImage("assets/images/profile_picture.png"),
+                        fit: BoxFit.fill,
+                      ),
                     ),
                     Text(
                       "Jon Ben",
@@ -82,9 +86,9 @@ class _PortfolioCardState extends State<PortfolioCard> {
                     children: [
                       ElevatedButton(
                         onPressed: () {},
-                        child: const Icon(
-                          Icons.arrow_downward,
-                          color: Colors.black,
+                        child: const Image(
+                          image: AssetImage("assets/images/arrow_upward.png"),
+                          fit: BoxFit.fill,
                         ),
                         style: ButtonStyle(
                           backgroundColor:
@@ -106,9 +110,9 @@ class _PortfolioCardState extends State<PortfolioCard> {
                     children: [
                       ElevatedButton(
                         onPressed: () {},
-                        child: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.black,
+                        child: const Image(
+                          image:
+                              AssetImage("assets/images/bottom_left_arrow.png"),
                         ),
                         style: ButtonStyle(
                           backgroundColor:
@@ -119,7 +123,7 @@ class _PortfolioCardState extends State<PortfolioCard> {
                         ),
                       ),
                       const Text(
-                        "Send",
+                        "Receive",
                         style: TextStyle(
                           color: Colors.white,
                         ),
