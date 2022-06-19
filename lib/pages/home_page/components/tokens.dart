@@ -66,12 +66,12 @@ class _TokenListState extends State<TokenList> {
                         callback: (val) {
                           setState(() {
                             widget.selectedIndex = val;
+                            widget.callback(val);
                           });
                         },
                       );
                     },
                   );
-                  widget.callback(widget.selectedIndex);
                 },
                 child: Row(
                   children: [
@@ -105,6 +105,7 @@ class _TokenListState extends State<TokenList> {
           ),
           Expanded(
             child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               itemCount: 3,
               itemBuilder: ((context, index) {
