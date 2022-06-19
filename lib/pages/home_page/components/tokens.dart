@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tezsure/pages/home_page/components/bottom_modal_sheet.dart';
 import 'package:tezsure/utils/constants.dart';
 
 class TokenList extends StatefulWidget {
@@ -28,7 +29,19 @@ class _TokenListState extends State<TokenList> {
                 style: TextStyle(color: Colors.white),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  showModalBottomSheet(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(defaultPadding),
+                      ),
+                    ),
+                    context: context,
+                    builder: (context) {
+                      return BottomModalSheet(selectedIndex: 0);
+                    },
+                  );
+                },
                 child: Row(
                   children: const [
                     Icon(

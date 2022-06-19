@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tezsure/pages/home_page/components/bottom_modal_sheet.dart';
 import 'package:tezsure/pages/home_page/components/bottom_nav_bar.dart';
 import 'package:tezsure/pages/home_page/components/destructive_card.dart';
 import 'package:tezsure/pages/home_page/components/portfolio_card.dart';
@@ -13,6 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int selectedIndex = 0;
+  bool cardsDestroyed = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,13 +25,13 @@ class _HomePageState extends State<HomePage> {
             Column(
               children: [
                 Expanded(
-                  flex: 3,
+                  flex: cardsDestroyed ? 3 : 4,
                   child: Container(
                     color: const Color.fromRGBO(37, 37, 37, 1),
                   ),
                 ),
                 Expanded(
-                  flex: 5,
+                  flex: cardsDestroyed ? 7 : 6,
                   child: Container(
                     color: Colors.black,
                   ),
@@ -76,8 +79,18 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
+          onPressed: () => showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(defaultPadding),
+              ),
+            ),
+            context: context,
+            builder: (context) {
+              return BottomModalSheet(selectedIndex: selectedIndex);
+            },
+          ),
           backgroundColor: const Color.fromRGBO(37, 37, 37, 1),
-          onPressed: () {},
           elevation: 0,
           child: const Icon(
             Icons.swap_vert_circle,
