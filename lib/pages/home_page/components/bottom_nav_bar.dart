@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:tezsure/utils/constants.dart';
 
 class FabBottomNavBar extends StatefulWidget {
-  const FabBottomNavBar({Key? key}) : super(key: key);
-
+  const FabBottomNavBar({Key? key, required this.index, required this.callback})
+      : super(key: key);
+  final int index;
+  final ValueChanged<int> callback;
   @override
   State<FabBottomNavBar> createState() => _FabBottomNavBarState();
 }
@@ -25,18 +29,18 @@ class _FabBottomNavBarState extends State<FabBottomNavBar> {
             label: "Wallet",
           ),
           buildTabItem(
-            index: 0,
+            index: 1,
             iconData: Icons.photo_library_outlined,
             label: "Gallery",
           ),
           placeholder,
           buildTabItem(
-            index: 0,
+            index: 2,
             iconData: Icons.star_outline,
             label: "Favourites",
           ),
           buildTabItem(
-            index: 0,
+            index: 3,
             iconData: Icons.settings_outlined,
             label: "Settings",
           )
@@ -48,10 +52,13 @@ class _FabBottomNavBarState extends State<FabBottomNavBar> {
   Widget buildTabItem(
       {required int index, required IconData iconData, required String label}) {
     return ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          widget.callback(index);
+        },
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.transparent),
           elevation: MaterialStateProperty.all(0),
+          overlayColor: MaterialStateProperty.all(Colors.transparent),
         ),
         child: Container(
           height: 60,
@@ -60,11 +67,17 @@ class _FabBottomNavBarState extends State<FabBottomNavBar> {
             children: [
               Icon(
                 iconData,
-                color: Colors.yellow,
+                color: widget.index == index ? defaultYellow : Colors.white,
               ),
               Text(
                 label,
-                style: const TextStyle(color: Colors.yellow),
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    color: widget.index == index ? defaultYellow : Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ],
           ),

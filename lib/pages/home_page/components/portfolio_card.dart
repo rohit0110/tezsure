@@ -16,7 +16,9 @@ class _PortfolioCardState extends State<PortfolioCard> {
       margin: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
         color: Colors.black,
-        border: Border.all(color: Colors.grey),
+        border: Border.all(
+          color: borderColor,
+        ),
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
@@ -32,13 +34,14 @@ class _PortfolioCardState extends State<PortfolioCard> {
                     "Portfolio Balance",
                     style: TextStyle(
                       color: Colors.white,
+                      fontSize: 10,
                     ),
                   ),
                   Text(
                     "\$46.78",
                     style: TextStyle(
-                      color: Colors.yellow,
-                      fontSize: 20,
+                      color: defaultYellow,
+                      fontSize: 18,
                     ),
                   ),
                 ],
@@ -55,18 +58,24 @@ class _PortfolioCardState extends State<PortfolioCard> {
                         fit: BoxFit.fill,
                       ),
                     ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Text(
                       "Jon Ben",
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 10,
+                      ),
                     ),
                     Icon(
-                      Icons.arrow_drop_down,
+                      Icons.keyboard_arrow_down,
                       color: Colors.black,
                     ),
                   ],
                 ),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.yellow),
+                  backgroundColor: MaterialStateProperty.all(defaultYellow),
                   shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(defaultPadding),
@@ -96,12 +105,15 @@ class _PortfolioCardState extends State<PortfolioCard> {
                           shape: MaterialStateProperty.all(
                             const CircleBorder(),
                           ),
+                          minimumSize:
+                              MaterialStateProperty.all(const Size(25, 25)),
                         ),
                       ),
                       const Text(
                         "Send",
                         style: TextStyle(
                           color: Colors.white,
+                          fontSize: 10,
                         ),
                       ),
                     ],
@@ -120,12 +132,15 @@ class _PortfolioCardState extends State<PortfolioCard> {
                           shape: MaterialStateProperty.all(
                             const CircleBorder(),
                           ),
+                          minimumSize:
+                              MaterialStateProperty.all(const Size(25, 25)),
                         ),
                       ),
                       const Text(
                         "Receive",
                         style: TextStyle(
                           color: Colors.white,
+                          fontSize: 10,
                         ),
                       ),
                     ],
@@ -136,21 +151,23 @@ class _PortfolioCardState extends State<PortfolioCard> {
                 children: [
                   ElevatedButton(
                     onPressed: () {},
-                    child: const Icon(
-                      Icons.qr_code,
-                      color: Colors.black,
+                    child: const Image(
+                      image: AssetImage("assets/images/qr_code.png"),
                     ),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.white),
                       shape: MaterialStateProperty.all(
                         const CircleBorder(),
                       ),
+                      minimumSize:
+                          MaterialStateProperty.all(const Size(25, 25)),
                     ),
                   ),
                   const Text(
                     "Scan",
                     style: TextStyle(
                       color: Colors.white,
+                      fontSize: 10,
                     ),
                   ),
                 ],

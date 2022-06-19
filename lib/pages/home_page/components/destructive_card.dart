@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tezsure/utils/constants.dart';
 
 class DestructiveCard extends StatelessWidget {
@@ -21,7 +22,7 @@ class DestructiveCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(defaultPadding / 2),
           border: Border.all(
-            color: Colors.white,
+            color: borderColor,
             width: 0.5,
           ),
           image: DecorationImage(
@@ -48,20 +49,32 @@ class DestructiveCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+              padding: const EdgeInsets.symmetric(vertical: defaultPadding / 3),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     heading,
-                    style: const TextStyle(color: Colors.white, fontSize: 19),
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
                     subheading,
-                    style: const TextStyle(color: Colors.white, fontSize: 12),
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ],
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tezsure/pages/home_page/components/bottom_modal_sheet.dart';
 import 'package:tezsure/utils/constants.dart';
 
@@ -40,9 +41,15 @@ class _TokenListState extends State<TokenList> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 "All tokens",
-                style: TextStyle(color: Colors.white),
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -67,19 +74,26 @@ class _TokenListState extends State<TokenList> {
                   widget.callback(widget.selectedIndex);
                 },
                 child: Row(
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.swap_vert,
                       color: Colors.black,
+                      size: 20,
                     ),
                     Text(
                       "Sort By",
-                      style: TextStyle(color: Colors.black),
+                      style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                   ],
                 ),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.yellow),
+                  backgroundColor: MaterialStateProperty.all(defaultYellow),
                   shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
@@ -117,10 +131,12 @@ class _TokenListState extends State<TokenList> {
     String amount,
   ) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+      padding: const EdgeInsets.symmetric(vertical: defaultPadding - 10),
       decoration: const BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: Colors.grey),
+          bottom: BorderSide(
+            color: tokenBorderColor,
+          ),
         ),
       ),
       child: Row(
@@ -137,11 +153,23 @@ class _TokenListState extends State<TokenList> {
                 children: [
                   Text(
                     heading,
-                    style: const TextStyle(color: Colors.white),
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
                   Text(
                     subheading,
-                    style: const TextStyle(color: Colors.grey),
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -152,14 +180,22 @@ class _TokenListState extends State<TokenList> {
             children: [
               Text(
                 total,
-                style: const TextStyle(
-                  color: Colors.yellow,
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: defaultYellow,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
               Text(
-                "$amount",
-                style: const TextStyle(
-                  color: Colors.white,
+                "\$$amount",
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ],

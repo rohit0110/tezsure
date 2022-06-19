@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
+  int bottomNavIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -111,12 +112,19 @@ class _HomePageState extends State<HomePage> {
           elevation: 0,
           child: const Icon(
             Icons.swap_vert_circle,
-            color: Colors.yellow,
+            color: defaultYellow,
             size: 50,
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: const FabBottomNavBar(),
+        bottomNavigationBar: FabBottomNavBar(
+          index: bottomNavIndex,
+          callback: (val) {
+            setState(() {
+              bottomNavIndex = val;
+            });
+          },
+        ),
       ),
     );
   }

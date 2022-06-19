@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tezsure/utils/constants.dart';
 
 // ignore: must_be_immutable
@@ -23,26 +24,51 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
           top: Radius.circular(defaultPadding),
         ),
       ),
-      padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
         children: [
+          Container(
+            height: 6,
+            width: 60,
+            decoration: const BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: defaultPadding,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   "Sort By",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
                 TextButton(
                   onPressed: () {
                     widget.callback(widget.selectedIndex);
                     Navigator.of(context).pop();
                   },
-                  child: const Text(
+                  child: Text(
                     "Done",
-                    style: TextStyle(color: Colors.yellow, fontSize: 20),
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        color: Colors.yellow,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                   style: ButtonStyle(
                     overlayColor: MaterialStateProperty.all(Colors.transparent),
@@ -64,16 +90,23 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
                   });
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(defaultPadding),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: defaultPadding,
+                    vertical: defaultPadding / 2,
+                  ),
                   color: widget.selectedIndex == 0
                       ? Colors.yellow
                       : Colors.transparent,
                   child: Text(
                     "Price: Lowest to high",
-                    style: TextStyle(
-                      color: widget.selectedIndex == 0
-                          ? Colors.black
-                          : Colors.white,
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        color: widget.selectedIndex == 0
+                            ? Colors.black
+                            : Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
@@ -85,16 +118,23 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
                   });
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(defaultPadding),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: defaultPadding,
+                    vertical: defaultPadding / 2,
+                  ),
                   color: widget.selectedIndex == 1
                       ? Colors.yellow
                       : Colors.transparent,
                   child: Text(
                     "Price: Highest to low",
-                    style: TextStyle(
-                      color: widget.selectedIndex == 1
-                          ? Colors.black
-                          : Colors.white,
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        color: widget.selectedIndex == 1
+                            ? Colors.black
+                            : Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
