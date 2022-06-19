@@ -7,7 +7,9 @@ import 'package:tezsure/pages/home_page/components/tokens.dart';
 import 'package:tezsure/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,7 +17,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
-  bool cardsDestroyed = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,13 +26,13 @@ class _HomePageState extends State<HomePage> {
             Column(
               children: [
                 Expanded(
-                  flex: cardsDestroyed ? 3 : 4,
+                  flex: 4,
                   child: Container(
                     color: const Color.fromRGBO(37, 37, 37, 1),
                   ),
                 ),
                 Expanded(
-                  flex: cardsDestroyed ? 7 : 6,
+                  flex: 6,
                   child: Container(
                     color: Colors.black,
                   ),
@@ -73,7 +74,16 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                const Expanded(child: TokenList()),
+                Expanded(
+                  child: TokenList(
+                    selectedIndex: selectedIndex,
+                    callback: (val) {
+                      setState(() {
+                        selectedIndex = val;
+                      });
+                    },
+                  ),
+                ),
               ],
             ),
           ],
@@ -87,7 +97,14 @@ class _HomePageState extends State<HomePage> {
             ),
             context: context,
             builder: (context) {
-              return BottomModalSheet(selectedIndex: selectedIndex);
+              return BottomModalSheet(
+                selectedIndex: selectedIndex,
+                callback: (val) {
+                  setState(() {
+                    selectedIndex = val;
+                  });
+                },
+              );
             },
           ),
           backgroundColor: const Color.fromRGBO(37, 37, 37, 1),

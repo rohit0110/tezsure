@@ -3,8 +3,11 @@ import 'package:tezsure/utils/constants.dart';
 
 // ignore: must_be_immutable
 class BottomModalSheet extends StatefulWidget {
-  BottomModalSheet({Key? key, required this.selectedIndex}) : super(key: key);
+  BottomModalSheet(
+      {Key? key, required this.selectedIndex, required this.callback})
+      : super(key: key);
   int selectedIndex;
+  final ValueSetter<int> callback;
   @override
   State<BottomModalSheet> createState() => _BottomModalSheetState();
 }
@@ -33,10 +36,16 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.callback(widget.selectedIndex);
+                    Navigator.of(context).pop();
+                  },
                   child: const Text(
                     "Done",
                     style: TextStyle(color: Colors.yellow, fontSize: 20),
+                  ),
+                  style: ButtonStyle(
+                    overlayColor: MaterialStateProperty.all(Colors.transparent),
                   ),
                 )
               ],

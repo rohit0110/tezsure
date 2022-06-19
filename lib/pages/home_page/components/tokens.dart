@@ -2,23 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:tezsure/pages/home_page/components/bottom_modal_sheet.dart';
 import 'package:tezsure/utils/constants.dart';
 
+// ignore: must_be_immutable
 class TokenList extends StatefulWidget {
-  const TokenList({Key? key}) : super(key: key);
-
+  TokenList({
+    Key? key,
+    required this.selectedIndex,
+    required this.callback,
+  }) : super(key: key);
+  int selectedIndex;
+  final ValueSetter<int> callback;
   @override
   State<TokenList> createState() => _TokenListState();
 }
 
 class _TokenListState extends State<TokenList> {
-  List<List<String>> tokens = [
-    ["Tezos", "XTZ", "assets/images/tezos_logo.png", "64", "\$255.21"],
-    ["Dogami", "Doga", "assets/images/dogami_logo.png", "764", "\$55.21"],
-    ["GIF", "Gif", "assets/images/gif_logo.png", "0.0164", "\$1.21"],
+  List<List<dynamic>> tokens = [
+    ["Tezos", "XTZ", "assets/images/tezos_logo.png", "64", 255.21],
+    ["Dogami", "Doga", "assets/images/dogami_logo.png", "764", 55.21],
+    ["GIF", "Gif", "assets/images/gif_logo.png", "0.0164", 1.21],
   ];
+
   @override
   Widget build(BuildContext context) {
+    if (widget.selectedIndex == 0) {
+      tokens.sort((a, b) {
+        return a[4].compareTo(b[4]) as int;
+      });
+    } else {
+      tokens.sort((b, a) {
+        return a[4].compareTo(b[4]) as int;
+      });
+    }
     return Container(
-      margin: const EdgeInsets.all(defaultPadding),
+      margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
       child: Column(
         children: [
           Row(
@@ -38,9 +54,17 @@ class _TokenListState extends State<TokenList> {
                     ),
                     context: context,
                     builder: (context) {
-                      return BottomModalSheet(selectedIndex: 0);
+                      return BottomModalSheet(
+                        selectedIndex: widget.selectedIndex,
+                        callback: (val) {
+                          setState(() {
+                            widget.selectedIndex = val;
+                          });
+                        },
+                      );
                     },
                   );
+                  widget.callback(widget.selectedIndex);
                 },
                 child: Row(
                   children: const [
@@ -75,7 +99,7 @@ class _TokenListState extends State<TokenList> {
                   tokens[index][1],
                   tokens[index][2],
                   tokens[index][3],
-                  tokens[index][4],
+                  tokens[index][4].toString(),
                 );
               }),
             ),
@@ -133,7 +157,7 @@ class _TokenListState extends State<TokenList> {
                 ),
               ),
               Text(
-                amount,
+                "$amount",
                 style: const TextStyle(
                   color: Colors.white,
                 ),
