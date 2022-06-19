@@ -27,13 +27,13 @@ class _HomePageState extends State<HomePage> {
             Column(
               children: [
                 Expanded(
-                  flex: 4,
+                  flex: 1,
                   child: Container(
                     color: const Color.fromRGBO(37, 37, 37, 1),
                   ),
                 ),
                 Expanded(
-                  flex: 6,
+                  flex: 2,
                   child: Container(
                     color: Colors.black,
                   ),
